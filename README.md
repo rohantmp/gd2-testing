@@ -1,10 +1,10 @@
 # gd2-testing
 Just some scripts I wrote to automate setting up gd2 in a test env. Haven't put *much* thought into generalizing yet.
-It was made with a brand new centos vm in mind, and many things are centos specific (like the glusterfs nightly repos)
+It was made with a brand new centos vm in mind, and **many things are centos specific** (like the glusterfs nightly repos)
 
 
 
-## First run the `setup_gd2.bash` file:
+## First run the `setup_gd2.bash` file on each of your 3 nodes [possibly more]:
 `bash --verbose setup_gd2.bash <hostname>`
 
 or
