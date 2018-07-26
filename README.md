@@ -21,11 +21,18 @@ It does the following things:
     - etc
   - Connects you to that tmux session so you can watch the fireworks
   
+  I use this to setup a gd2 node after a fresh centos install
 
 
 ## Then go to the `ansible/` directory and run the ansible play [latest should work,but is untested]:
 
 `ansible -i inventory.yml etcd.yml`
+
+
+I use this to:
+ - Install, configure and start etcd
+ - Start gd2 on all the other hosts configured for that etcd
+ - Add all the peers from one of the hosts
 
 
 ## Example inventory.yml:
