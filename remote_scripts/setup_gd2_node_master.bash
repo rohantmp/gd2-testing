@@ -27,18 +27,24 @@ cd ${GOPATH}/src/github.com/gluster/glusterd2
 make
 make install
 
-# firewall-cmd --add-port=24007-24009/tcp
-# firewall-cmd --add-port=2380/tcp
-# firewall-cmd --add-port=2379/tcp
-#
-# #cockpit
-# firewall-cmd --add-port=9090/tcp
-# firewall-cmd --runtime-to-permanent
-
 #fully disable firewall
-setenforce 0
-iptables -F
-systemctl disable --now firewalld
+if [[ $DISABLE_FIREWALL ]]
+then
+  setenforce 0
+  iptables -F
+  systemctl disable --now firewalld
+else
+  #doesn't account for etcd yet
+  firewall-cmd --add-port=24007-24009/tcp
+  firewall-cmd --add-port=2380/tcp
+  firewall-cmd --add-port=2379/tcp
+
+  #cockpit
+  firewall-cmd --add-port=9090/tcp
+
+  firewall-cmd --runtime-to-permanent
+fi
+
 
 #guest additions
 sudo yum install -y centos-release-ovirt42
