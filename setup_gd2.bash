@@ -2,7 +2,7 @@
 set -eu
 DIR=$(dirname "$0")
 testdir="/root/test"
-source exports.bash
+source ${DIR}/exports.bash
 if [[ $# -eq 1 ]]
 then
         export HOST=$1
