@@ -1,0 +1,18 @@
+# to run after setup_gd2
+- name: Installing etcd
+  hosts: etcd
+  tasks:
+    - name: "Installing etcd from yum"
+      yum:
+        name: etcd
+        state: latest
+    - name: "Storing the config file"
+      template:
+        src: templates/etcd_config.j2
+        dest: /etc/etcd/etcd_config
+- name: Copying the glusterd2 conf to the other machines
+  hosts: ghosts
+  tasks:
+    - template:
+        src: templates/glusterd2.toml.j2
+        dest: /root/test/glusterd2.toml

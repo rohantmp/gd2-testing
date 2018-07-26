@@ -1,0 +1,6 @@
+data-dir: "/var/lib/etcd"
+listen-peer-urls: http://{{  ansible_default_ipv4.address }}:2380
+listen-client-urls: http://{{  ansible_default_ipv4.address }}:2379
+name: "glusterd2"
+initial-advertise-peer-urls: http://{{  ansible_default_ipv4.address }}:2380
+advertise-client-urls: http://{{ ansible_default_ipv4.address }}:2379
