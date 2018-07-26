@@ -1,0 +1,38 @@
+# to run after setup_gd2
+- name: Installing etcd
+  hosts: etcd
+  tasks:
+    - name: "Installing etcd from yum"
+      yum:
+        name: etcd
+        state: latest
+    - name: "Storing the config file"
+      template:
+        src: templates/etcd_config.j2
+        dest: /etc/etcd/etcd_config
+
+
+- name: Copying the glusterd2 conf to the other machines
+  hosts: ghosts
+  tasks:
+    - name: Creating gd2 config file
+      template:
+        src: templates/glusterd2.toml.j2
+        dest: /root/test/glusterd2.toml
+    - name: Starting gd2
+      command: /bin/bash --verbose /root/test/start_gd2.bash
+    - name: Ensuring gluster is running
+      command: /usr/local/sbin/glustercli peer status
+
+
+
+# - name: Gather facts about peers
+#   hosts: ghosts
+#   tasks:
+#     - ping:
+
+- name: Adding Peers
+  hosts: ghosts[0]
+  tasks:
+  - command: "/usr/local/sbin/glustercli peer add {{ hostvars[item]['ansible_default_ipv4']['address'] }}"
+    with_items: "{{ groups['ghosts'][1:] }}"
