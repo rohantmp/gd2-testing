@@ -1,8 +1,8 @@
 #!/bin/bash
 set -eu
-DIR="/home/tpjsm/workspace/gluster-testing/"
+DIR=$(dirname "$0")
 testdir="/root/test"
-source ~/.bash_functions
+source exports.bash
 if [[ $# -eq 1 ]]
 then
         export HOST=$1
