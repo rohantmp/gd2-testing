@@ -1,4 +1,5 @@
-source exports.bash
+export DIR=$(dirname "$0")
+source ${DIR}/exports.bash
 #GOPATH is set in files/.bashrc
 # make sure to source it
 set -eu

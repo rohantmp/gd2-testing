@@ -1,4 +1,5 @@
-source exports.bash
+export DIR=$(dirname "$0")
+source ${DIR}/exports.bash
 
 set -eu
 tmux new-session -d -s gd2
