@@ -62,7 +62,7 @@ ghosts:
 
 GD2 developement guide: https://github.com/gluster/glusterd2/blob/master/doc/development-guide.md
 
-GD2 Quickstart guide: https://github.com/gluster/glusterd2/blob/master/doc/quick-start-user-guide.md
+GD2 quickstart guide: https://github.com/gluster/glusterd2/blob/master/doc/quick-start-user-guide.md
 
 ETCD config template lives in: `ansibles/templates/`
 
