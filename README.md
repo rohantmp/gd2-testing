@@ -2,7 +2,7 @@
 Just some scripts I wrote to automate setting up glusterd2 with **external etcd** in a test env. Haven't put *much* thought into generalizing yet.
 It was made with a brand new centos vm in mind, and a few **things may be centos specific** (like the glusterfs nightly repos)
 
-## There are 2 Stages
+## There are 2 Stages (1 script/play each)
 
 - Stage 1: Setup nodes
   - Installing dependencies
