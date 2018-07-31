@@ -1,39 +1,44 @@
 # gd2-testing
-Just some scripts I wrote to automate setting up gd2 in a test env. Haven't put *much* thought into generalizing yet.
+Just some scripts I wrote to automate setting up gd2 with **external etcd** in a test env. Haven't put *much* thought into generalizing yet.
 It was made with a brand new centos vm in mind, and **many things are centos specific** (like the glusterfs nightly repos)
 
+## There are 2 Stages
+
+- Stage 1: Setup nodes
+  - Installing dependencies
+  - Downloading and installing gd2 from source
+  - Copying over some convenience scripts for running/stopping gd2 in tmux (`remote_scripts/`)
+- Stage 2: Deploy
+  - Specifying one of the nodes to also run the external etcd
+  - Reflecting that in gd2 configuration of all nodes
+  - Starting etcd and gd2
+  - Add all peers
 
 
-## First run the `setup_gd2.bash` file on each of your 3 nodes [possibly more]:
+## Stage 1: run the `setup_gd2.bash` file on each of your 3 nodes [possibly more]:
 `bash --verbose setup_gd2.bash <hostname>`
 
 or
 
-`bash --verbose setup_gd2.bash <hostname> <password>` (this sets up passwordless ssh using sshpass)
+`bash --verbose setup_gd2.bash <hostname> <password>` (this sets up passwordless ssh with that host using sshpass)
 
-It does the following things:
-  - Install tmux
-  - Copy over a .bashrc that sets GOPATH
-  - Copy over `remote_scripts/*.bash` scripts to be run on the remote machine
-  - Run setup_gd2_node_master.bash on the remote machine in a tmux session called `setup` which:
-    - Downloads Go
-    - Downloads, builds, ands installs gd2, installs packages
-    - etc
-  - Connects you to that tmux session so you can watch the fireworks
+Note: sometimes setting up passwordless ssh like this fails because the host fingerprint is not in known_hosts. I hadn't realized this because I use the following lines in my ~/.ssh/config for each test VM:
+```
+Host x.x.x.x some-optional-alias1
+        Hostname x.x.x.x
+        Port 22
+        User root
+        StrictHostKeyChecking no
+        UserKnownHostsFile /dev/null
+        LogLevel QUIET
+```
   
-  I use this to setup a gd2 node after a fresh centos install
+I use this to setup a gd2 node after a fresh centos install. It eventually sets up a tmux session `setup` and connects you to it so you can watch the fireworks.
 
 
-## Then go to the `ansible/` directory and run the ansible play [latest should work,but is untested]:
+## Stage 2: Go to the `ansible/` directory, make an inventory file like the one below, and run the ansible play:
 
-`ansible -i inventory.yml etcd.yml`
-
-
-I use this to:
- - Install, configure and start etcd
- - Start gd2 on all the other hosts configured for that etcd
- - Add all the peers from one of the hosts
-
+`ansible-playbook -i inventory.yml etcd.yml`
 
 ## Example inventory.yml:
 
