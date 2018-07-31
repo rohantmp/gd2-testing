@@ -61,7 +61,6 @@ ghosts:
 ## Resources:
 
 GD2 developement guide: https://github.com/gluster/glusterd2/blob/master/doc/development-guide.md
-https://github.com/gluster/glusterd2/blob/master/doc/development-guide.md
 
 ETCD config template lives in: `ansibles/templates/`
 
