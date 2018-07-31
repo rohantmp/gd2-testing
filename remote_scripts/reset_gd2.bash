@@ -1,4 +1,6 @@
+#!/bin/bash
 #WIP
+
 export DIR=$(dirname "$0")
 source ${DIR}/exports.bash
 

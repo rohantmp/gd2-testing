@@ -1,7 +1,7 @@
+#!/bin/bash
 ### import from the same dir with:
 # export DIR=$(dirname "$0")
 # source ${DIR}/exports.bash
-
 export DIR=$(dirname "$0")
 
 export GD2_CONF="${DIR}/glusterd2.toml"
