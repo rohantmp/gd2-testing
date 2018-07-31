@@ -1,5 +1,5 @@
 # gd2-testing
-Just some scripts I wrote to automate setting up gd2 with **external etcd** in a test env. Haven't put *much* thought into generalizing yet.
+Just some scripts I wrote to automate setting up glusterd2 with **external etcd** in a test env. Haven't put *much* thought into generalizing yet.
 It was made with a brand new centos vm in mind, and **many things are centos specific** (like the glusterfs nightly repos)
 
 ## There are 2 Stages
