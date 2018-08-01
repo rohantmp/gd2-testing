@@ -4,11 +4,11 @@ It was made with a brand new centos vm in mind, and a few **things may be centos
 
 ## There are 2 Stages (1 script/play each)
 
-- Stage 1: Setup nodes
+- Stage 1: Setup nodes using bash script
   - Installing dependencies
   - Downloading and installing gd2 from source
   - Copying over some convenience scripts for running/stopping gd2 in tmux (`remote_scripts/`)
-- Stage 2: Deploy
+- Stage 2: Deploy using ansible (which also runs some stuff from `remote_scripts/`)
   - Specifying one of the nodes to also run the external etcd
   - Reflecting that in gd2 configuration of all nodes
   - Starting etcd and gd2
