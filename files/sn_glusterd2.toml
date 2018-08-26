@@ -1,0 +1,10 @@
+localstatedir = "/usr/local/var/lib/glusterd2"
+loglevel = "INFO"
+rundir = "/usr/local/var/run/glusterd2"
+defaultpeerport = "24008"
+peeraddress = ":24008"
+clientaddress = ":24007"
+#restauth should be set to false to disable REST authentication in glusterd2
+restauth = false
+noembed = true
+etcdendpoints = "http://127.0.0.1:2379"

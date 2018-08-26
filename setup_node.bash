@@ -9,9 +9,12 @@ testdir=${HOME}/test
 echo [running as ${USER}]
 echo [creating working directory at ${testdir}]
 
+yum install -y tmux etcd
 mkdir -p ${testdir}
 rsync ${DIR}/files/.bashrc ${HOME}
 rsync ${DIR}/remote_scripts/*.bash ${testdir}/
+rsync ${DIR}/files/sn_glusterd2.toml ${testdir}/
+rsync ${DIR}/files/sn_etcd_config ${testdir}/
 bash --verbose ${testdir}/setup_gd2_node_master.bash
 
 
