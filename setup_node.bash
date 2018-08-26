@@ -13,8 +13,8 @@ yum install -y tmux etcd
 mkdir -p ${testdir}
 rsync ${DIR}/files/.bashrc ${HOME}
 rsync ${DIR}/remote_scripts/*.bash ${testdir}/
-rsync ${DIR}/files/sn_glusterd2.toml ${testdir}/
-rsync ${DIR}/files/sn_etcd_config ${testdir}/
+rsync ${DIR}/files/sn_glusterd2.toml ${testdir}/glusterd2.toml
+rsync ${DIR}/files/sn_etcd_config ${testdir}/etcd_config
 bash --verbose ${testdir}/setup_gd2_node_master.bash
 
 
