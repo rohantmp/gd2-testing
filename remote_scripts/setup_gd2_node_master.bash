@@ -21,7 +21,7 @@ curl -o /etc/yum.repos.d/glusterfs-nighthly-master.repo http://artifacts.ci.cent
 yum install -y glusterfs-server glusterfs-fuse glusterfs-api
 
 
-wget -O golang.tar.gz ${GOLANG}
+wget -O golang.tar.gz ${GOLANG_SRC}
 tar -C /usr/local -xzf golang.tar.gz
 
 go get -d github.com/gluster/glusterd2 || true # because go get -d has non-zero exit
@@ -37,25 +37,29 @@ then
   iptables -F
   systemctl disable --now firewalld
 else
-  #doesn't account for etcd yet
+  #glusterd2
   firewall-cmd --add-port=24007-24009/tcp
   firewall-cmd --add-port=2380/tcp
-  firewall-cmd --add-port=2379/tcp
 
+  #etcd
+  firewall-cmd --add-port=2379/tcp
   #cockpit
   firewall-cmd --add-port=9090/tcp
 
   firewall-cmd --runtime-to-permanent
 fi
 
+if [[ $OVIRT_GUEST ]]
+then
+  sudo yum install -y centos-release-ovirt42
+  sudo yum install -y ovirt-guest-agent-common
+  sudo systemctl enable --now ovirt-guest-agent.service
+fi
 
-#guest additions
-sudo yum install -y centos-release-ovirt42
-sudo yum install -y ovirt-guest-agent-common
-sudo systemctl enable --now ovirt-guest-agent.service
-
-#Cockpit
-sudo yum install -y cockpit
-sudo systemctl enable cockpit
-sudo systemctl enable cockpit.socket
-sudo systemctl start cockpit
+if [[ $INSTALL_COCKPIT ]]
+then
+  sudo yum install -y cockpit
+  sudo systemctl enable cockpit
+  sudo systemctl enable cockpit.socket
+  sudo systemctl start cockpit
+fi
