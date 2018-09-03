@@ -45,16 +45,13 @@ I use this to setup a gd2 node after a fresh centos install. It eventually sets 
 ```yml
 ghosts:
   hosts:
-    g1:
-      host1.example.com:
-    g3:
-      host2.example.com:
+    host1.example.com:
+    host2.example.com:
 
   children:
     etcd:
       hosts:
-        g2:
-          host3.example.com:
+        host3.example.com:
 
 ```
 
