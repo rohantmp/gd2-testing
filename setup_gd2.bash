@@ -21,4 +21,4 @@ ssh ${HOST} ${ssh_opts} "yum install -y tmux"
 scp ${DIR}/files/.bashrc ${HOST}:/root/
 scp ${DIR}/remote_scripts/*.bash ${HOST}:${testdir}/
 ssh ${HOST} ${ssh_opts} "tmux new-session -d -s setup; tmux send-keys -t setup 'bash --verbose ${testdir}/setup_gd2_node_master.bash' C-m"
-ssh ${HOST} ${ssh_opts} -t 'tmux a -t setup'
+ssh ${HOST} ${ssh_opts}  'tmux ls'

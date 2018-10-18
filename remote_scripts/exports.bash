@@ -11,3 +11,4 @@ export GOLANG_SRC="https://dl.google.com/go/go1.10.3.linux-amd64.tar.gz"
 export DISABLE_FIREWALL=false
 export OVIRT_GUEST=true
 export INSTALL_COCKPIT=true
+export INSTALL_GLUSTER_ANSIBLE=true

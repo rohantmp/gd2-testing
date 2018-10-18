@@ -63,3 +63,10 @@ then
   sudo systemctl enable cockpit.socket
   sudo systemctl start cockpit
 fi
+
+
+if [[ $INSTALL_GLUSTER_ANSIBLE ]]
+then
+  curl -o /etc/yum.repos.d/gluster-ansible.repo https://copr.fedorainfracloud.org/coprs/sac/gluster-ansible/repo/epel-7/sac-gluster-ansible-epel-7.repo
+  yum install -y 	gluster-ansible python-gluster-mgmt-client 
+fi

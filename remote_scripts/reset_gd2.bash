@@ -13,5 +13,10 @@ function read_conf(){
 LSD=$(read_conf ${localstatedir})
 
 echo "LSD: ${LSD}"
+export confirm="y"
 echo "Remove? y/n: [y]"
-read
+read confirm
+if [[ $confirm = "y" ]]
+then
+	rm -rf ${LSD}
+fi
